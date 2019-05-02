@@ -1,0 +1,191 @@
+Utilize o comando echo para imprimir seu nome no terminal
+
+R:echo "Thaina"
+
+Utilize o comando echo para salvar seu nome em um arquivo chamado cliente01.txt.
+	Confira o resultado com o comando less.
+
+R:echo "Thaina" > cliente01.txt
+
+Utilize o comando echo para salvar o nome da cidade em que voce nasceu no
+	final do arquivo cliente01.txt.
+
+R: echo "Joinville" >> cliente01.txt
+
+Crie um novo diretorio chamado clientes com o comando mkdir. Confira o
+	resultado com o comando ls.
+
+R: mkdir clientes 
+
+Mova o arquivo cliente 01.txt para o diretorio clientes. Confira o resultado com
+	os comandos ls e cd.
+
+R: mv ~/cliente01.txt clientes
+
+Crie uma copia do arquivo cliente 01.txt com o comando cp chamado cliente01.txt.bkp.
+	Confira o resultado.
+
+R: cp cliente01.txt cliente01.txt.bkp
+
+Remova o arquivo cliente 01.txt com o comando rm. Confira o resultado
+
+R: rm cliente01.txt
+
+Crie um arquivo chamado de cliente.script com todos os comandos utilizados
+	acima, na mesma ordem de execuc˜ao.
+
+R: vi cliente.script
+	echo "Thaina"
+	echo "Thaina" > cliente_01.txt
+	echo "Joinville" >>  cliente_01.txt
+	mkdir clientes
+	mv cliente_01.txt clientes
+	cd clientes
+	cp cliente_01.txt cliente_01.txt_bkp
+	rm cliente_01.txt
+	
+Modifique o arquivo cliente.script com o comando chmod para se tornar um
+	arquivo executavel. Execute o arquivo e confira o resultado. 
+	Para executar utilize o comando ./cliente.script. Obs: exclua a pasta clientes antes de executar
+	o script para garantir que esta funcionando corretamente.
+
+R: chmod 777 script.shell
+
+Execute o comando cal. Observe o resultado. Execute o comando echo|cal >
+	hoje.txt. Utilize o comandos ls e less para conferir o resultado. O que ocorreu?
+	Qual a funcao do operador — ?
+
+R: Utilizando o comando echo|cal>hoje.txt, gerou o arquivo tipo txt com nome "hoje" que
+	contém uma tabela com o mês igual o do horário da máquina. O less permite a
+	visualização do arquivo sem alterá-lo.
+
+11 - Utilize o comando wget para baixar o arquivo cidades sc.txt no endereco https:
+	//gist.githubusercontent.com/leandersonandre/c8cba982f42262591be628e5397d1c3f/
+	raw/bd13a3e13823708e477f99f9285f845b292714c6/cidades_sc.txt.
+
+R: wget https://gist.githubusercontent.com/leandersonandre/c8cba982f42262591be628e5397d1c3f/raw/bd13a3e13823708e477f99f9285f845b292714c6/cidades_sc.txt.
+
+12 - Execute o comando grep Balneario cidades sc.txt. Qual e o resultado?
+
+R: grep Balneario cidades sc.txt
+	gerou resultados da busca por cidades que possuem Balneario no nome:
+	Balneario Camburiu, Balneario Barra do Sul, Balneario Barra Velha, Balneario Itajub.
+
+Execute o comando grep balneario cidades sc.txt. Qual e o resultado?
+
+R: grep balneario cidades_sc.txt não encontrou nenhuma cidade pois o "b" e o programa e case sensitive.
+
+Execute o comando grep ”do Sul”cidades sc.txt. Qual e o resultado?
+
+R: grep "do sul", não encontrou nenhuma cidade não se deve usar aspas para procurar.
+
+Utilize os comandos cat e grep para filtrar as cidades que comecam com o nome
+Balneario.
+
+R: cat cidades_sc.txt | grep Balneario
+	Retornou:
+	Balneario Camburiu;
+	Balneario Barra do Sul;
+	Balneario Barra Velha;
+	Balneario Itajuba;
+
+Crie um arquivo chamado balneario.txt com o conteudo filtrado no problema
+15.
+
+
+R:	vi balneario.txt
+	Balneario Camburiu;
+	Balneario Barra do Sul;
+	Balneario Barra Velha;
+	Balneario Itajuba;
+
+Compacte o arquivo balneario.txt, nomeando de compactado.tar com o comando tar.
+
+R: gzip balneario.txt renomeou para balneario.txt.gz,
+	usei gzip por que o tar nao funcionou
+
+Descompacte o arquivo compactado.tar com o comando tar.
+
+R: gzip -d balneario.txt.gz  descompactou para balneario.txt
+
+Shell
+
+Crie um script que solicite ao usuario digitar o seu nome e imprime o conteudo
+	no terminal.
+
+R: 	echo "Informe seu nome "
+	read nome
+	echo "Seu nome é: $nome "
+	
+Crie um script que multiplique dois numeros que o usuario informar.
+	Primeiro Numero: 2
+	Segundo Numero: 3
+	Resultado: 6
+
+R:	echo "Digite um numero:"
+	read a
+	echo "Digite outro numero:"
+	read b
+	c=$(($a*$b))
+	echo "Seu resultado $c"
+
+Crie um script que identifique se o usuario informou um numero positivo, negativo ou zero.
+	Numero: 2
+	Positivo
+
+R: echo "Digite um numero: "
+	read x
+	if [ $x -gt 0 ]; then
+        #echo "maior que 0"
+	elif [ $x -lt 0 ]; then
+        #echo "menor que zero"
+	else
+        #echo "igual zero"
+	fi
+
+Crie um script resolva a tabuada do numero informado pelo usuario.
+	Numero: 2
+	2x0 = 1
+	2x1 = 2
+	...
+	2x10 = 20
+
+R: #!/usr/bash
+	echo "Informe um numero"
+	read x
+	y=0
+	while [ $y -le 10 ]; do
+        z=$(($x*$y))
+        echo "$x * $y = $z"
+        y=$(($y+1))
+	done
+
+Crie um script que apresente duas opcoes ao usuario. A primeira opcao devera
+	mostrar o calendario. A segunda opcao deve mostrar a lista de arquivos do
+	diretorio.
+	Opcoes:
+	—–
+	1: Calendario
+	2: Listas de arquivos do diretorio
+	—–
+	Informe sua opcao: 2
+	—–
+	Mostrar arquivos do diretorio
+	—–
+	arquivo.txt diretorio arquivo2.txt
+
+R: #!/usr/bash
+	echo "1: Calendario"
+	echo "2: Listas de arquivos do diretorio"
+	read x
+	if [ $x -eq 1 ]; then
+        echo|cal
+	elif [ $x -eq 2 ]; then
+        mkdir Documentos
+        cd Documentos
+        echo "  " > arquivo1.txt
+        echo "  " > arquivo2.txt
+        ls
+	else
+        echo "Voce digitou errado"
+	fi
